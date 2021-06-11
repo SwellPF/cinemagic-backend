@@ -1,0 +1,2 @@
+class WatchlistMoviesController < ApplicationController
+end
