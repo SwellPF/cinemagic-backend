@@ -1,2 +1,2 @@
-class WatchlistMoviesController < ApplicationController
+class Api::V1::WatchlistMoviesController < ApplicationController
 end
