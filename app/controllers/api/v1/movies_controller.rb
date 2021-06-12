@@ -4,17 +4,18 @@ class Api::V1::MoviesController < ApplicationController
 
     def index      
         # if current_user
-            if params[:movie] && params[:movie][:genre_id].present? && params[:newreleases]
-                movies = Movie.filter_by_genre(params[:movie][:genre_id]).recent_releases
+            # if params[:movie] && params[:movie][:genre_id].present? && params[:newreleases]
+            #     movies = Movie.filter_by_genre(params[:movie][:genre_id]).recent_releases
             
-            elsif params[:movie] && params[:movie][:genre_id].present?
-                movies = Movie.filter_by_genre(params[:movie][:genre_id])
-            elsif
-                params[:newreleases] 
-                    movies = Movie.recent_releases
-            else
-                movies = Movie.all
-            end
+            # elsif params[:movie] && params[:movie][:genre_id].present?
+            #     movies = Movie.filter_by_genre(params[:movie][:genre_id])
+            # elsif
+            #     params[:newreleases] 
+            #         movies = Movie.recent_releases
+            # else
+            #     movies = Movie.all
+            # end
+            movies = Movie.all
             render json: movies
         # else
         #     redirect_to '/'
@@ -27,8 +28,7 @@ class Api::V1::MoviesController < ApplicationController
             render json: movie
         # else
         #     redirect_to '/'
-        # end
-       
+        # end 
     end
 
     def create
@@ -57,5 +57,3 @@ private
     end
 end
 
-
-end
