@@ -33,7 +33,7 @@ class Api::V1::MoviesController < ApplicationController
 
     def create
         movie = Movie.new(movie_params)
-        binding.pry
+        movie.genre_id = movie.genre_id.to_i
         if movie.save
             render json: movie
         else
