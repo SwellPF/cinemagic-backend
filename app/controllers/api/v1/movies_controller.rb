@@ -17,8 +17,6 @@ class Api::V1::MoviesController < ApplicationController
             # end
             # movies = Movie.all
             render json: Movie.includes(:comments), include: ['comments']
-        # else
-        #     redirect_to '/'
         # end
     end
     
@@ -26,8 +24,6 @@ class Api::V1::MoviesController < ApplicationController
         # if current_user
             movie = Movie.find(params[:id])
             render json: movie
-        # else
-        #     redirect_to '/'
         # end 
     end
 
