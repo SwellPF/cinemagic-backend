@@ -15,8 +15,8 @@ class Api::V1::MoviesController < ApplicationController
             # else
             #     movies = Movie.all
             # end
-            movies = Movie.all
-            render json: movies
+            # movies = Movie.all
+            render json: Movie.includes(:comments), include: ['comments']
         # else
         #     redirect_to '/'
         # end
