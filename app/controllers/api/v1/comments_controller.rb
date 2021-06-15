@@ -2,6 +2,7 @@ class Api::V1::CommentsController < ApplicationController
     # before_action :require_login
   
     def create
+     # binding.pry
       @movie = Movie.find_by(id: params[:movie_id])
       @comment = @movie.comments.new(movie_id: params[:movie_id], user_id: params[:user_id], content: params[:content])
       
@@ -59,7 +60,7 @@ class Api::V1::CommentsController < ApplicationController
       end
     end
 
-    end
+
 
     private
 
