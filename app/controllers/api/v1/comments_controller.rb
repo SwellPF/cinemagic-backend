@@ -2,8 +2,8 @@ class Api::V1::CommentsController < ApplicationController
     # before_action :require_login
   
     def create
-    #   @movie = Movie.find_by(id: params[:movie_id])
-      @comment = @movie.comment.new(movie_id: params[:movie_id], user_id: current_user.id, content: params[:content])
+      @movie = Movie.find_by(id: params[:movie_id])
+      @comment = @movie.comments.new(movie_id: params[:movie_id], user_id: params[:user_id], content: params[:content])
       
       if @comment.save
           render json: @movie
@@ -47,6 +47,18 @@ class Api::V1::CommentsController < ApplicationController
         else
           render json: {error: 'Error updating comment.'}
         end
+    end
+
+    def destroy
+      @comment = Comment.find(params["id"])
+      @movie = Movie.find(@comment.movie_id)
+      if @comment.destroy
+        render json: @movie
+      else
+        render json: {error: 'Unable to delete comment'}
+      end
+    end
+
     end
 
     private
