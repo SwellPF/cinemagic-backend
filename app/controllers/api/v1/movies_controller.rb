@@ -16,14 +16,14 @@ class Api::V1::MoviesController < ApplicationController
             #     movies = Movie.all
             # end
             # movies = Movie.all
-            render json: Movie.includes(:comments), include: ['comments']
+            render json: Movie.all, include: ['comments'], methods: ['genre_name']
         # end
     end
     
     def show
         # if current_user
             movie = Movie.find(params[:id])
-            render json: movie
+            render json: movie, include: ['comments'], methods: ['genre_name']
         # end 
     end
 
@@ -31,7 +31,7 @@ class Api::V1::MoviesController < ApplicationController
         movie = Movie.new(movie_params)
         movie.genre_id = movie.genre_id.to_i
         if movie.save
-            render json: movie
+            render json: movie, include: ['comments'], methods: ['genre_name']
         else
             render json: {error: 'Error creating movie.'}
         end

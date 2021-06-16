@@ -9,5 +9,9 @@ class Movie < ApplicationRecord
     validates :title, presence: true
     validates :genre, presence: true
     validates :description, :year_released, :image_link, presence: true
+
+    def genre_name
+        self.genre.name
+    end
   
 end

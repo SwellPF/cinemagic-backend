@@ -7,7 +7,7 @@ class Api::V1::CommentsController < ApplicationController
       @comment = @movie.comments.new(movie_id: params[:movie_id], user_id: params[:user_id], content: params[:content])
       
       if @comment.save
-          render json: @movie
+          render json: @comment
       else
           render json: {error: "Error creating comment or comment cannot be blank."}
       end
