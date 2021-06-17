@@ -7,7 +7,7 @@ class Api::V1::MoviesController < ApplicationController
             # if params[:movie] && params[:movie][:genre_id].present? && params[:newreleases]
             #     movies = Movie.filter_by_genre(params[:movie][:genre_id]).recent_releases
             
-            # elsif params[:movie] && params[:movie][:genre_id].present?
+            # if params[:movie] && params[:movie][:genre_id].present?
             #     movies = Movie.filter_by_genre(params[:movie][:genre_id])
             # elsif
             #     params[:newreleases] 
@@ -15,8 +15,8 @@ class Api::V1::MoviesController < ApplicationController
             # else
             #     movies = Movie.all
             # end
-            # movies = Movie.all
-            render json: Movie.all, include: ['comments'], methods: ['genre_name']
+            movies = Movie.all
+            render json: movies, include: ['comments'], methods: ['genre_name']
         # end
     end
     
@@ -40,9 +40,9 @@ class Api::V1::MoviesController < ApplicationController
     def update
         @movie = Movie.find_by(id: params[:id])
         if @movie.update(movie_params)
-            redirect_to movie_path(@movie)
+            render json: movie, include: ['comments'], methods: ['genre_name']
         else
-            render 'edit'
+            render json: {error: 'Error updating movie.'}
         end
     end
 

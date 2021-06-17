@@ -54,7 +54,7 @@ class Api::V1::CommentsController < ApplicationController
       @comment = Comment.find(params["id"])
       @movie = Movie.find(@comment.movie_id)
       if @comment.destroy
-        render json: @movie
+        render json: @comment
       else
         render json: {error: 'Unable to delete comment'}
       end
