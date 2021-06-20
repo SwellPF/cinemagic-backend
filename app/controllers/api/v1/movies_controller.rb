@@ -38,8 +38,9 @@ class Api::V1::MoviesController < ApplicationController
     end
 
     def update
-        @movie = Movie.find_by(id: params[:id])
-        if @movie.update(movie_params)
+        # binding.pry
+        movie = Movie.find_by(id: params[:id])
+        if movie.update(movie_params)
             render json: movie, include: ['comments'], methods: ['genre_name']
         else
             render json: {error: 'Error updating movie.'}
@@ -50,7 +51,7 @@ class Api::V1::MoviesController < ApplicationController
 private
 
     def movie_params
-        params.require(:movie).permit(:title, :genre_id, :year_released, :description, :image_link)
+        params.require(:movie).permit(:id, :title, :genre_id, :year_released, :description, :image_link, :created_at, :updated_at)
     end
 end
 
